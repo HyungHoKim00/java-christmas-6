@@ -35,7 +35,7 @@ public class Discount {
         return totalBenefit.get();
     }
 
-    public int calculteTotalDiscount() {
+    public int calculateTotalDiscount() {
         AtomicInteger totalDiscount = new AtomicInteger();
         discount.keySet().stream()
                 .filter(event -> event != GIFT_EVENT)
