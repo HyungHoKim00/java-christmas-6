@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     public void printDate(String details) {
-        System.out.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println(details + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     public void printOrderDetails(String details) {
@@ -31,7 +31,7 @@ public class OutputView {
     public void printTotalPrice(int totalPrice) {
         System.out.println();
         printTitle("할인 전 총주문 금액");
-        System.out.println(MONEY_FORMAT.format(totalPrice));
+        System.out.println(MONEY_FORMAT.format(totalPrice) + "원");
     }
 
     public void printGiftEvent(String wonGiftEvent) {
@@ -58,7 +58,7 @@ public class OutputView {
     public void printEstimatedPrice(int estimatedPrice) {
         System.out.println();
         printTitle("할인 후 예상 결제 금액");
-        System.out.println(MONEY_FORMAT.format(estimatedPrice));
+        System.out.println(MONEY_FORMAT.format(estimatedPrice) + "원");
     }
 
     public void printEventBadge(Badge badge) {
