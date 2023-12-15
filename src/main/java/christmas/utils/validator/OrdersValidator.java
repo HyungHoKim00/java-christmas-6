@@ -30,7 +30,9 @@ public class OrdersValidator {
     }
 
     private static boolean invalidOrders(List<String> orders) {
-        return ordersAllDrink(orders) || ordersDuplicated(orders) || totalAmountOutOfRange(orders);
+        return ordersAllDrink(orders)
+                || ordersDuplicated(orders)
+                || totalAmountOutOfRange(orders);
     }
 
 
