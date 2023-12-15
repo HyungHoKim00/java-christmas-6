@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.utils.Format.MONEY_FORMAT;
+
 public class OutputView {
     public void printErrorMessage(String errorMessage) {
         System.out.println("[ERROR] " + errorMessage);
@@ -22,6 +24,12 @@ public class OutputView {
         System.out.println();
         printTitle("주문 메뉴");
         System.out.println(details);
+    }
+
+    public void printTotalPrice(int totalPrice) {
+        System.out.println();
+        printTitle("할인 전 총주문 금액");
+        System.out.println(MONEY_FORMAT.format(totalPrice));
     }
 
 
