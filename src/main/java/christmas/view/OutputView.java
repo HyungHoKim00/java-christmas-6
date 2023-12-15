@@ -32,6 +32,12 @@ public class OutputView {
         System.out.println(MONEY_FORMAT.format(totalPrice));
     }
 
+    public void printGiftEvent(String wonGiftEvent) {
+        System.out.println();
+        printTitle("증정 메뉴");
+        System.out.println(wonGiftEvent);
+    }
+
 
     private void printTitle(String title) {
         System.out.println("<" + title + ">");
