@@ -38,6 +38,12 @@ public class OutputView {
         System.out.println(wonGiftEvent);
     }
 
+    public void printBenefitDetails(String details) {
+        System.out.println();
+        printTitle("혜택 내역");
+        System.out.println(details);
+    }
+
 
     private void printTitle(String title) {
         System.out.println("<" + title + ">");
