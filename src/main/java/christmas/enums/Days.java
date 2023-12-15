@@ -12,4 +12,20 @@ public enum Days {
     Days(List<Integer> days) {
         this.days = days;
     }
+
+    public static boolean isBeforeChristmas(int date) {
+        return date <= CHRISTMAS.days.get(0);
+    }
+
+    public static boolean isWeekday(int date) {
+        return !WEEKEND.days.contains(date);
+    }
+
+    public static boolean isWeekend(int date) {
+        return WEEKEND.days.contains(date);
+    }
+
+    public static boolean isSpecialDay(int date) {
+        return SPECIAL.days.contains(date);
+    }
 }

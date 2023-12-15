@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.utils.InputValidator;
+import christmas.utils.validator.InputValidator;
 import java.util.List;
 
 public class InputView {
@@ -11,9 +11,9 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public List<String> readMenus() {
+    public List<String> readOrders() {
         String input = Console.readLine();
-        InputValidator.validateMenusFormat(input);
+        InputValidator.validateOrderFormat(input);
         return List.of(input.split(","));
     }
 }

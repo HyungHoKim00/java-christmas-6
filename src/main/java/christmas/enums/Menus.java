@@ -5,6 +5,8 @@ import static christmas.enums.MenuTypes.DESSERT;
 import static christmas.enums.MenuTypes.DRINK;
 import static christmas.enums.MenuTypes.MAIN;
 
+import java.util.Arrays;
+
 public enum Menus {
     양송이수프(APPETIZER, 6_000),
     타파스(APPETIZER, 5_500),
@@ -25,5 +27,29 @@ public enum Menus {
     Menus(MenuTypes menuTypes, int price) {
         this.menuTypes = menuTypes;
         this.price = price;
+    }
+
+    public static Menus getByName(String menuName) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name().equals(menuName))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public MenuTypes getMenuType() {
+        return menuTypes;
+    }
+
+    public static boolean invalidMenu(String menuName) {
+        return Arrays.stream(values())
+                .noneMatch(menu -> menu.name().equals(menuName));
+    }
+
+    public static MenuTypes getMenuTypesByName(String menuName) {
+        return getByName(menuName).menuTypes;
     }
 }

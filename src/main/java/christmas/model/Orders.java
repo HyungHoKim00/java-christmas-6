@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.enums.MenuTypes;
 import christmas.enums.Menus;
 import christmas.utils.validator.OrdersValidator;
 import java.util.EnumMap;
@@ -23,5 +24,13 @@ public class Orders {
         AtomicInteger totalPrice = new AtomicInteger(0);
         orders.forEach((menu, amount) -> totalPrice.addAndGet(menu.getPrice() * amount));
         return totalPrice.get();
+    }
+
+    public int getAmountOf(MenuTypes menuTypes) {
+        AtomicInteger totalAmount = new AtomicInteger(0);
+        orders.keySet().stream()
+                .filter(menu -> menu.getMenuType() == menuTypes)
+                .forEach(menu -> totalAmount.addAndGet(orders.get(menu)));
+        return totalAmount.get();
     }
 }

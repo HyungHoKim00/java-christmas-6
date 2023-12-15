@@ -2,7 +2,9 @@ package christmas.model;
 
 import static christmas.enums.Events.D_DAY_EVENT;
 import static christmas.enums.Events.WEEKDAY_EVENT;
+import static christmas.enums.Events.WEEKEND_EVENT;
 import static christmas.enums.MenuTypes.DESSERT;
+import static christmas.enums.MenuTypes.MAIN;
 
 import christmas.enums.Events;
 import java.util.EnumMap;
@@ -30,6 +32,12 @@ public class Discount {
     private void putWeekdayDiscount(Date date, Orders orders) {
         if (date.isWeekday()) {
             discount.put(WEEKDAY_EVENT, orders.getAmountOf(DESSERT));
+        }
+    }
+
+    private void putWeekendDiscount(Date date, Orders orders) {
+        if (date.isWeekend()) {
+            discount.put(WEEKEND_EVENT, orders.getAmountOf(MAIN));
         }
     }
 }
