@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     public void printDate(String details) {
-        System.out.println(details + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println(details + "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     public void printOrderDetails(String details) {
