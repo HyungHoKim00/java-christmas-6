@@ -44,6 +44,21 @@ public class OutputView {
         System.out.println(details);
     }
 
+    public void printBenefitPrice(int benefitPrice) {
+        System.out.println();
+        printTitle("총혜택 금액");
+        if (benefitPrice != 0) {
+            System.out.print("-");
+        }
+        System.out.println(MONEY_FORMAT.format(benefitPrice) + "원");
+    }
+
+    public void printEstimatedPrice(int estimatedPrice) {
+        System.out.println();
+        printTitle("할인 후 예상 결제 금액");
+        System.out.println(MONEY_FORMAT.format(estimatedPrice));
+    }
+
 
     private void printTitle(String title) {
         System.out.println("<" + title + ">");
