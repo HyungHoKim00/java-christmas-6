@@ -1,6 +1,7 @@
 package christmas.model;
 
 import static christmas.enums.Events.D_DAY_EVENT;
+import static christmas.enums.Events.SPECIAL_EVENT;
 import static christmas.enums.Events.WEEKDAY_EVENT;
 import static christmas.enums.Events.WEEKEND_EVENT;
 import static christmas.enums.MenuTypes.DESSERT;
@@ -11,6 +12,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class Discount {
+    private static final int WIN = 1;
     private final Map<Events, Integer> discount;
 
     public Discount(Date date, Orders orders) {
@@ -38,6 +40,12 @@ public class Discount {
     private void putWeekendDiscount(Date date, Orders orders) {
         if (date.isWeekend()) {
             discount.put(WEEKEND_EVENT, orders.getAmountOf(MAIN));
+        }
+    }
+
+    private void putSpecialDayDiscount(Date date) {
+        if (date.isSpecialDay()) {
+            discount.put(SPECIAL_EVENT, WIN);
         }
     }
 }
