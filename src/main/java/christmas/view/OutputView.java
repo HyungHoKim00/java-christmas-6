@@ -2,6 +2,8 @@ package christmas.view;
 
 import static christmas.utils.Format.MONEY_FORMAT;
 
+import christmas.enums.Badge;
+
 public class OutputView {
     public void printErrorMessage(String errorMessage) {
         System.out.println("[ERROR] " + errorMessage);
@@ -57,6 +59,12 @@ public class OutputView {
         System.out.println();
         printTitle("할인 후 예상 결제 금액");
         System.out.println(MONEY_FORMAT.format(estimatedPrice));
+    }
+
+    public void printEventBadge(Badge badge) {
+        System.out.println();
+        printTitle("12월 이벤트 배지");
+        System.out.println(badge.name());
     }
 
 
