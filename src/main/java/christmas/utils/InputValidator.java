@@ -1,12 +1,28 @@
 package christmas.utils;
 
+import java.util.List;
+
 public class InputValidator {
     private static final String POSITIVE_INTEGER_PATTERN = "^[0-9]*$";
-    private static final String NOT_NUMERIC = "입력이 숫자가 아닙니다.";
 
     public static void validateNumeric(String input) {
-        if (!input.matches(POSITIVE_INTEGER_PATTERN)) {
-            throw new IllegalArgumentException(NOT_NUMERIC);
+        if (notNumeric(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DATE);
         }
+    }
+
+    public static void validateOrderFormat(String input) {
+        List<String> orders = List.of(input.split(","));
+        orders.forEach(order -> {
+            if (notNumeric(order.split("-")[1])) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER);
+            }
+            ;
+        });
+    }
+
+
+    private static boolean notNumeric(String input) {
+        return !input.matches(POSITIVE_INTEGER_PATTERN);
     }
 }
