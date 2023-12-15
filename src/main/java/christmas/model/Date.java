@@ -1,6 +1,6 @@
 package christmas.model;
 
-import christmas.enums.Days;
+import christmas.enums.Day;
 import christmas.utils.validator.DateValidator;
 
 public class Date {
@@ -12,22 +12,26 @@ public class Date {
     }
 
     public boolean beforeChristmas() {
-        return Days.isBeforeChristmas(date);
+        return Day.isBeforeChristmas(date);
     }
 
     public boolean isWeekday() {
-        return Days.isWeekday(date);
+        return Day.isWeekday(date);
     }
 
     public boolean isWeekend() {
-        return Days.isWeekend(date);
+        return Day.isWeekend(date);
     }
 
     public boolean isSpecialDay() {
-        return Days.isSpecialDay(date);
+        return Day.isSpecialDay(date);
     }
 
     public int getDDayEventMultiplicand() {
         return date + 9;
+    }
+
+    public String createDetails() {
+        return "12월 " + date + "일";
     }
 }

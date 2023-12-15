@@ -1,6 +1,6 @@
 package christmas.enums;
 
-public enum MenuTypes {
+public enum MenuType {
     APPETIZER,
     MAIN,
     DESSERT,

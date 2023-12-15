@@ -1,8 +1,8 @@
 package christmas.utils.validator;
 
-import static christmas.enums.MenuTypes.DRINK;
+import static christmas.enums.MenuType.DRINK;
 
-import christmas.enums.Menus;
+import christmas.enums.Menu;
 import christmas.utils.ErrMsg;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class OrdersValidator {
 
 
     private static boolean menuNotExist(String menuName) {
-        return Menus.invalidMenu(menuName);
+        return Menu.invalidMenu(menuName);
     }
 
     private static boolean amountOutOfRange(int amount) {
@@ -43,7 +43,7 @@ public class OrdersValidator {
     }
 
     private static boolean ordersAllDrink(List<String> orders) {
-        return orders.stream().allMatch(order -> Menus.getMenuTypesByName(order.split("-")[0]) == DRINK);
+        return orders.stream().allMatch(order -> Menu.getMenuTypeByName(order.split("-")[0]) == DRINK);
     }
 
     private static boolean ordersDuplicated(List<String> orders) {

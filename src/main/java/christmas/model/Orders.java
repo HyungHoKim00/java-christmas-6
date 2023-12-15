@@ -1,7 +1,7 @@
 package christmas.model;
 
-import christmas.enums.MenuTypes;
-import christmas.enums.Menus;
+import christmas.enums.Menu;
+import christmas.enums.MenuType;
 import christmas.utils.validator.OrdersValidator;
 import java.util.EnumMap;
 import java.util.List;
@@ -9,14 +9,14 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Orders {
-    private final Map<Menus, Integer> orders;
+    private final Map<Menu, Integer> orders;
 
     public Orders(List<String> orders) {
         OrdersValidator.validate(orders);
-        this.orders = new EnumMap<>(Menus.class);
+        this.orders = new EnumMap<>(Menu.class);
         orders.forEach(order -> {
             String[] menuAndAmount = order.split("-");
-            this.orders.put(Menus.getByName(menuAndAmount[0]), Integer.parseInt(menuAndAmount[1]));
+            this.orders.put(Menu.getByName(menuAndAmount[0]), Integer.parseInt(menuAndAmount[1]));
         });
     }
 
@@ -26,11 +26,17 @@ public class Orders {
         return totalPrice.get();
     }
 
-    public int getAmountOf(MenuTypes menuTypes) {
+    public int getAmountOf(MenuType menuType) {
         AtomicInteger totalAmount = new AtomicInteger(0);
         orders.keySet().stream()
-                .filter(menu -> menu.getMenuType() == menuTypes)
+                .filter(menu -> menu.getMenuType() == menuType)
                 .forEach(menu -> totalAmount.addAndGet(orders.get(menu)));
         return totalAmount.get();
+    }
+
+    public String createDetails() {
+        StringBuilder details = new StringBuilder();
+        orders.forEach((menu, amount) -> details.append(menu.name()).append(" ").append(amount).append("개\n"));
+        return details.toString();
     }
 }

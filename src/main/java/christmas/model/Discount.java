@@ -1,14 +1,16 @@
 package christmas.model;
 
-import static christmas.enums.Events.D_DAY_EVENT;
-import static christmas.enums.Events.GIFT_EVENT;
-import static christmas.enums.Events.SPECIAL_EVENT;
-import static christmas.enums.Events.WEEKDAY_EVENT;
-import static christmas.enums.Events.WEEKEND_EVENT;
-import static christmas.enums.MenuTypes.DESSERT;
-import static christmas.enums.MenuTypes.MAIN;
+import static christmas.enums.Event.D_DAY_EVENT;
+import static christmas.enums.Event.GIFT_EVENT;
+import static christmas.enums.Event.SPECIAL_EVENT;
+import static christmas.enums.Event.WEEKDAY_EVENT;
+import static christmas.enums.Event.WEEKEND_EVENT;
+import static christmas.enums.Gift.GIFT_EVENT_GIFT;
+import static christmas.enums.MenuType.DESSERT;
+import static christmas.enums.MenuType.MAIN;
+import static christmas.utils.Format.MONEY_FORMAT;
 
-import christmas.enums.Events;
+import christmas.enums.Event;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,10 +18,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Discount {
     private static final int WIN = 1;
     private static final int GIFT_EVENT_CONDITION = 120_000;
-    private final Map<Events, Integer> discount;
+    private final Map<Event, Integer> discount;
 
     public Discount(Date date, Orders orders) {
-        this.discount = new EnumMap<>(Events.class);
+        this.discount = new EnumMap<>(Event.class);
         int totalPrice = orders.calculateTotalPrice();
         putDDayDiscount(date);
         putWeekdayDiscount(date, orders);
@@ -41,6 +43,21 @@ public class Discount {
                 .filter(event -> event != GIFT_EVENT)
                 .forEach(event -> totalDiscount.addAndGet(event.getBenefitPrice() * discount.get(event)));
         return totalDiscount.get();
+    }
+
+    public String wonGiftEvent() {
+        if (discount.containsKey(GIFT_EVENT)) {
+            return GIFT_EVENT_GIFT.getMenu().name() + " " + WIN + "개";
+        }
+        return "없음";
+    }
+
+    public String createDetails() {
+        StringBuilder details = new StringBuilder();
+        discount.forEach((event, amount) -> details.append(event.getName()).append(": -")
+                .append(MONEY_FORMAT.format((long) amount * event.getBenefitPrice()))
+                .append("원\n"));
+        return details.toString();
     }
 
 

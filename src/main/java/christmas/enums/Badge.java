@@ -2,7 +2,7 @@ package christmas.enums;
 
 import java.util.Arrays;
 
-public enum Badges {
+public enum Badge {
     산타(20_000),
     트리(10_000),
     별(5_000),
@@ -10,11 +10,11 @@ public enum Badges {
 
     private final int leastCondition;
 
-    Badges(int leastCondition) {
+    Badge(int leastCondition) {
         this.leastCondition = leastCondition;
     }
 
-    public static Badges getBadgeByBenefitPrice(int benefitPrice) {
+    public static Badge getBadgeByBenefitPrice(int benefitPrice) {
         return Arrays.stream(values())
                 .filter(badge -> badge.leastCondition < benefitPrice)
                 .findFirst()

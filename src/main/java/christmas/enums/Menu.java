@@ -1,13 +1,13 @@
 package christmas.enums;
 
-import static christmas.enums.MenuTypes.APPETIZER;
-import static christmas.enums.MenuTypes.DESSERT;
-import static christmas.enums.MenuTypes.DRINK;
-import static christmas.enums.MenuTypes.MAIN;
+import static christmas.enums.MenuType.APPETIZER;
+import static christmas.enums.MenuType.DESSERT;
+import static christmas.enums.MenuType.DRINK;
+import static christmas.enums.MenuType.MAIN;
 
 import java.util.Arrays;
 
-public enum Menus {
+public enum Menu {
     양송이수프(APPETIZER, 6_000),
     타파스(APPETIZER, 5_500),
     시저샐러드(APPETIZER, 8_000),
@@ -21,15 +21,15 @@ public enum Menus {
     레드와인(DRINK, 60_000),
     샴페인(DRINK, 25_000);
 
-    private final MenuTypes menuTypes;
+    private final MenuType menuType;
     private final int price;
 
-    Menus(MenuTypes menuTypes, int price) {
-        this.menuTypes = menuTypes;
+    Menu(MenuType menuType, int price) {
+        this.menuType = menuType;
         this.price = price;
     }
 
-    public static Menus getByName(String menuName) {
+    public static Menu getByName(String menuName) {
         return Arrays.stream(values())
                 .filter(menu -> menu.name().equals(menuName))
                 .findFirst()
@@ -40,8 +40,8 @@ public enum Menus {
         return price;
     }
 
-    public MenuTypes getMenuType() {
-        return menuTypes;
+    public MenuType getMenuType() {
+        return menuType;
     }
 
     public static boolean invalidMenu(String menuName) {
@@ -49,7 +49,7 @@ public enum Menus {
                 .noneMatch(menu -> menu.name().equals(menuName));
     }
 
-    public static MenuTypes getMenuTypesByName(String menuName) {
-        return getByName(menuName).menuTypes;
+    public static MenuType getMenuTypeByName(String menuName) {
+        return getByName(menuName).menuType;
     }
 }
