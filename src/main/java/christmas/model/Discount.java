@@ -72,13 +72,13 @@ public class Discount {
 
     private void putWeekdayDiscount(Date date, Orders orders) {
         if (date.isWeekday()) {
-            discount.put(WEEKDAY_EVENT, orders.getAmountOf(DESSERT));
+            discount.put(WEEKDAY_EVENT, orders.getAmountByMenuType(DESSERT));
         }
     }
 
     private void putWeekendDiscount(Date date, Orders orders) {
         if (date.isWeekend()) {
-            discount.put(WEEKEND_EVENT, orders.getAmountOf(MAIN));
+            discount.put(WEEKEND_EVENT, orders.getAmountByMenuType(MAIN));
         }
     }
 

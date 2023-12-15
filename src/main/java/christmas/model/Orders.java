@@ -26,7 +26,7 @@ public class Orders {
         return totalPrice.get();
     }
 
-    public int getAmountOf(MenuType menuType) {
+    public int getAmountByMenuType(MenuType menuType) {
         AtomicInteger totalAmount = new AtomicInteger(0);
         orders.keySet().stream()
                 .filter(menu -> menu.getMenuType() == menuType)
