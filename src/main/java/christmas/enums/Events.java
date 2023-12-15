@@ -15,7 +15,7 @@ public enum Events {
         this.discountPrice = discountPrice;
     }
 
-    public int getDiscountPrice() {
+    public int getBenefitPrice() {
         return discountPrice;
     }
 }

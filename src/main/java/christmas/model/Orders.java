@@ -21,7 +21,7 @@ public class Orders {
     }
 
     public int calculateTotalPrice() {
-        AtomicInteger totalPrice = new AtomicInteger(0);
+        AtomicInteger totalPrice = new AtomicInteger();
         orders.forEach((menu, amount) -> totalPrice.addAndGet(menu.getPrice() * amount));
         return totalPrice.get();
     }

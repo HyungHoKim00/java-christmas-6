@@ -11,6 +11,7 @@ import static christmas.enums.MenuTypes.MAIN;
 import christmas.enums.Events;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Discount {
     private static final int WIN = 1;
@@ -25,7 +26,23 @@ public class Discount {
         putWeekendDiscount(date, orders);
         putSpecialDayDiscount(date);
         putGiftEventDiscount(totalPrice);
+        discount.entrySet().removeIf(entry -> entry.getValue() == 0);
     }
+
+    public int calculateTotalBenefit() {
+        AtomicInteger totalBenefit = new AtomicInteger();
+        discount.forEach((event, multiplicand) -> totalBenefit.addAndGet(event.getBenefitPrice() * multiplicand));
+        return totalBenefit.get();
+    }
+
+    public int calculteTotalDiscount() {
+        AtomicInteger totalDiscount = new AtomicInteger();
+        discount.keySet().stream()
+                .filter(event -> event != GIFT_EVENT)
+                .forEach(event -> totalDiscount.addAndGet(event.getBenefitPrice() * discount.get(event)));
+        return totalDiscount.get();
+    }
+
 
     private void putDDayDiscount(Date date) {
         if (date.beforeChristmas()) {
