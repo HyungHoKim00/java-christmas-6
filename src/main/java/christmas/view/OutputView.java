@@ -25,7 +25,7 @@ public class OutputView {
     public void printOrderDetails(String details) {
         System.out.println();
         printTitle("주문 메뉴");
-        System.out.println(details);
+        System.out.print(details);
     }
 
     public void printTotalPrice(int totalPrice) {
