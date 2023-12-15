@@ -53,6 +53,9 @@ public class Discount {
     }
 
     public String createDetails() {
+        if (discount.isEmpty()) {
+            return "없음";
+        }
         StringBuilder details = new StringBuilder();
         discount.forEach((event, amount) -> details.append(event.getName()).append(": -")
                 .append(MONEY_FORMAT.format((long) amount * event.getBenefitPrice()))

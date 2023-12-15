@@ -7,7 +7,7 @@ public class InputValidator {
     private static final String POSITIVE_INTEGER_PATTERN = "^[0-9]*$";
 
     public static void validateNumeric(String input) {
-        if (!numeric(input)) {
+        if (notNumeric(input)) {
             throw new IllegalArgumentException(ErrMsg.INVALID_DATE);
         }
     }
@@ -23,10 +23,10 @@ public class InputValidator {
 
     private static boolean invalidOrderFormat(String order) {
         String[] menuAndAmount = order.split("-");
-        return menuAndAmount.length == 2 && numeric(menuAndAmount[1]);
+        return menuAndAmount.length != 2 || notNumeric(menuAndAmount[1]);
     }
 
-    private static boolean numeric(String input) {
-        return input.matches(POSITIVE_INTEGER_PATTERN);
+    private static boolean notNumeric(String input) {
+        return !input.matches(POSITIVE_INTEGER_PATTERN);
     }
 }
